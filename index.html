@@ -1,1138 +1,587 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>عقد النجاعة – المدراء الولائيين</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
-<style>
-:root {
-  --navy: #0d1f3c;
-  --gold: #c9a84c;
-  --gold-light: #e8c97a;
-  --cream: #f9f5ee;
-  --rust: #8b3a2a;
-  --teal: #1a6b7a;
-  --silver: #d4d8e0;
-  --text: #1a1a2e;
-  --muted: #5a6070;
-  --white: #ffffff;
-  --section-bg: #f4f0e8;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: 'Cairo', sans-serif;
-  background-color: var(--cream);
-  color: var(--text);
-  line-height: 1.8;
-  direction: rtl;
-}
-
-/* ─── HERO HEADER ─── */
-.hero {
-  background: linear-gradient(135deg, var(--navy) 0%, #1a3560 60%, #0a2844 100%);
-  color: var(--white);
-  padding: 60px 40px 50px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(45deg, rgba(201,168,76,0.04) 0px, rgba(201,168,76,0.04) 1px, transparent 1px, transparent 30px),
-    repeating-linear-gradient(-45deg, rgba(201,168,76,0.04) 0px, rgba(201,168,76,0.04) 1px, transparent 1px, transparent 30px);
-}
-
-.hero-emblem {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  margin-bottom: 22px;
-  position: relative;
-}
-
-.emblem-line {
-  height: 1px;
-  width: 80px;
-  background: linear-gradient(to left, transparent, var(--gold));
-}
-.emblem-line.right {
-  background: linear-gradient(to right, transparent, var(--gold));
-}
-
-.emblem-icon {
-  width: 52px;
-  height: 52px;
-  border: 2px solid var(--gold);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  color: var(--gold);
-  animation: pulse-border 3s ease-in-out infinite;
-}
-
-@keyframes pulse-border {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.4); }
-  50% { box-shadow: 0 0 0 10px rgba(201,168,76,0); }
-}
-
-.hero h1 {
-  font-family: 'Amiri', serif;
-  font-size: 2.1rem;
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 6px;
-  letter-spacing: 0.5px;
-}
-
-.hero h2 {
-  font-family: 'Cairo', sans-serif;
-  font-size: 1.15rem;
-  font-weight: 300;
-  color: var(--gold-light);
-  margin-bottom: 20px;
-}
-
-.hero-badge {
-  display: inline-block;
-  background: var(--gold);
-  color: var(--navy);
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 8px 28px;
-  border-radius: 2px;
-  letter-spacing: 1px;
-  position: relative;
-}
-
-.hero-badge::before, .hero-badge::after {
-  content: '◆';
-  margin: 0 8px;
-  font-size: 0.6em;
-  opacity: 0.7;
-}
-
-.hero-meta {
-  margin-top: 18px;
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 1px;
-}
-
-/* ─── NAV TABS ─── */
-.nav-bar {
-  background: var(--navy);
-  padding: 0 30px;
-  display: flex;
-  gap: 0;
-  overflow-x: auto;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  border-bottom: 3px solid var(--gold);
-}
-
-.nav-bar::-webkit-scrollbar { height: 3px; }
-.nav-bar::-webkit-scrollbar-thumb { background: var(--gold); }
-
-.nav-tab {
-  color: rgba(255,255,255,0.6);
-  padding: 14px 20px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  border-bottom: 3px solid transparent;
-  margin-bottom: -3px;
-  transition: all 0.25s;
-  letter-spacing: 0.5px;
-}
-
-.nav-tab:hover { color: var(--gold-light); }
-.nav-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
-
-/* ─── MAIN LAYOUT ─── */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px 60px;
-}
-
-/* ─── SECTION ─── */
-.section {
-  display: none;
-  animation: fadeIn 0.4s ease;
-}
-.section.active { display: block; }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.section-header {
-  padding: 48px 0 24px;
-  border-bottom: 2px solid var(--silver);
-  margin-bottom: 32px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.section-number {
-  width: 48px;
-  height: 48px;
-  background: var(--navy);
-  color: var(--gold);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Amiri', serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-.section-title-text h3 {
-  font-family: 'Amiri', serif;
-  font-size: 1.6rem;
-  color: var(--navy);
-  font-weight: 700;
-}
-
-.section-title-text p {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-top: 2px;
-}
-
-/* ─── INFO CARD ─── */
-.info-card {
-  background: var(--white);
-  border: 1px solid var(--silver);
-  border-right: 5px solid var(--navy);
-  border-radius: 4px;
-  padding: 24px 28px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 12px rgba(13,31,60,0.06);
-}
-
-.info-card p {
-  margin-bottom: 10px;
-  font-size: 0.95rem;
-  line-height: 1.9;
-}
-.info-card p:last-child { margin-bottom: 0; }
-.info-card strong { color: var(--navy); font-weight: 700; }
-
-/* ─── INTRO TEXT ─── */
-.intro-text {
-  background: linear-gradient(135deg, #e8f4f8 0%, #f0ebe0 100%);
-  border: 1px solid rgba(26,107,122,0.2);
-  border-radius: 6px;
-  padding: 28px 32px;
-  margin-bottom: 28px;
-  font-size: 0.95rem;
-  line-height: 2;
-  color: var(--text);
-}
-
-/* ─── PROGRAMS GRID ─── */
-.programs-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-bottom: 32px;
-}
-
-.program-card {
-  background: var(--white);
-  border-radius: 8px;
-  padding: 24px 20px;
-  border: 1px solid var(--silver);
-  border-top: 4px solid var(--teal);
-  box-shadow: 0 3px 16px rgba(0,0,0,0.06);
-  transition: transform 0.2s, box-shadow 0.2s;
-  text-align: center;
-}
-
-.program-card:nth-child(2) { border-top-color: var(--gold); }
-.program-card:nth-child(3) { border-top-color: var(--rust); }
-
-.program-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
-}
-
-.program-num {
-  font-family: 'Amiri', serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--teal);
-  line-height: 1;
-  margin-bottom: 8px;
-}
-
-.program-card:nth-child(2) .program-num { color: var(--gold); }
-.program-card:nth-child(3) .program-num { color: var(--rust); }
-
-.program-card h4 {
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--navy);
-  margin-bottom: 10px;
-}
-
-.program-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
-
-/* ─── IMPORTANCE POINTS ─── */
-.importance-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-bottom: 28px;
-}
-
-.imp-item {
-  background: var(--white);
-  border: 1px solid var(--silver);
-  border-radius: 6px;
-  padding: 16px 18px;
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
-}
-
-.imp-icon {
-  width: 32px;
-  height: 32px;
-  background: var(--navy);
-  color: var(--gold);
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.imp-item h5 { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-.imp-item p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
-
-/* ─── LARGE OBJECTIVES TABLE ─── */
-.obj-table-wrap {
-  overflow-x: auto;
-  border-radius: 8px;
-  border: 1px solid var(--silver);
-  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-  margin-bottom: 32px;
-}
-
-.obj-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.84rem;
-  min-width: 900px;
-}
-
-.obj-table th {
-  background: var(--navy);
-  color: var(--gold);
-  padding: 14px 18px;
-  text-align: right;
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.3px;
-}
-
-.obj-table td {
-  padding: 14px 18px;
-  border-bottom: 1px solid var(--silver);
-  vertical-align: top;
-  line-height: 1.85;
-}
-
-.obj-table tr:nth-child(even) td { background: #f7f3ec; }
-.obj-table tr:last-child td { border-bottom: none; }
-.obj-table tr:hover td { background: #eef6f9; }
-
-.obj-table td:first-child {
-  font-weight: 700;
-  color: var(--navy);
-  min-width: 160px;
-}
-
-.obj-table td:nth-child(2) { color: var(--text); min-width: 260px; }
-.obj-table td:nth-child(3) { color: var(--muted); min-width: 350px; }
-
-/* ─── EVAL GRID ─── */
-.domain-card {
-  background: var(--white);
-  border: 1px solid var(--silver);
-  border-right: 5px solid var(--teal);
-  border-radius: 6px;
-  padding: 22px 24px;
-  margin-bottom: 18px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-.domain-card.gold-accent { border-right-color: var(--gold); }
-.domain-card.rust-accent { border-right-color: var(--rust); }
-.domain-card.navy-accent { border-right-color: var(--navy); }
-
-.domain-card h4 {
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--navy);
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.domain-card h4 .tag {
-  background: var(--teal);
-  color: var(--white);
-  font-size: 0.7rem;
-  padding: 2px 10px;
-  border-radius: 20px;
-  font-weight: 600;
-}
-
-.domain-card.gold-accent h4 .tag { background: var(--gold); color: var(--navy); }
-.domain-card.rust-accent h4 .tag { background: var(--rust); }
-.domain-card.navy-accent h4 .tag { background: var(--navy); }
-
-.domain-objectives { font-size: 0.88rem; color: var(--muted); margin-bottom: 14px; }
-.domain-objectives strong { color: var(--navy); font-size: 0.85rem; }
-
-.indicators-box {
-  background: var(--cream);
-  border: 1px solid #e0dbd0;
-  border-radius: 4px;
-  padding: 14px 18px;
-  font-size: 0.8rem;
-  color: var(--text);
-  line-height: 2;
-}
-
-/* ─── EVAL GRILLE ─── */
-.grille-section {
-  margin-bottom: 24px;
-}
-
-.grille-card {
-  background: var(--white);
-  border: 1px solid var(--silver);
-  border-radius: 6px;
-  overflow: hidden;
-  margin-bottom: 16px;
-  box-shadow: 0 1px 8px rgba(0,0,0,0.05);
-}
-
-.grille-header {
-  background: linear-gradient(135deg, var(--navy) 0%, #1a3560 100%);
-  color: var(--white);
-  padding: 14px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-}
-
-.grille-header h5 {
-  font-size: 0.95rem;
-  font-weight: 700;
-  flex: 1;
-}
-
-.rating-stars {
-  display: flex;
-  gap: 6px;
-  flex-shrink: 0;
-}
-
-.star {
-  width: 28px;
-  height: 28px;
-  border: 1.5px solid rgba(255,255,255,0.3);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.5);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.star:hover, .star.selected {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: var(--navy);
-  font-weight: 700;
-}
-
-.grille-body {
-  padding: 16px 20px;
-  font-size: 0.83rem;
-  color: var(--muted);
-  line-height: 2;
-  border-top: 1px solid var(--silver);
-}
-
-/* ─── RATING LEGEND ─── */
-.rating-legend {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  background: #f0ebe0;
-  border: 1px solid #ddd8c8;
-  border-radius: 6px;
-  padding: 14px 18px;
-  margin-bottom: 24px;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.82rem;
-  font-weight: 600;
-}
-
-.legend-dot {
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--white);
-}
-
-/* ─── LEGAL REFS ─── */
-.legal-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.legal-list li {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  padding: 14px 0;
-  border-bottom: 1px dashed var(--silver);
-  font-size: 0.9rem;
-  line-height: 1.8;
-}
-
-.legal-list li:last-child { border-bottom: none; }
-
-.legal-num {
-  background: var(--gold);
-  color: var(--navy);
-  font-weight: 900;
-  font-size: 0.7rem;
-  padding: 3px 8px;
-  border-radius: 3px;
-  white-space: nowrap;
-  margin-top: 3px;
-  flex-shrink: 0;
-}
-
-/* ─── FOOTER ─── */
-.page-footer {
-  background: var(--navy);
-  color: rgba(255,255,255,0.5);
-  text-align: center;
-  padding: 24px;
-  font-size: 0.82rem;
-  letter-spacing: 0.5px;
-}
-
-.page-footer span { color: var(--gold); }
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 768px) {
-  .hero h1 { font-size: 1.4rem; }
-  .programs-grid { grid-template-columns: 1fr; }
-  .importance-list { grid-template-columns: 1fr; }
-  .hero { padding: 40px 20px 35px; }
-  .container { padding: 0 16px 40px; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عقد النجاعة الكامل – وزارة التكوين والتعليم المهنيين</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="index.css">
+  <style>
+    /* Additional styles for full text density */
+    .full-text-content {
+      font-size: 0.95rem;
+      text-align: justify;
+      color: var(--text-main);
+    }
+    .full-text-content p { margin-bottom: 1.5rem; }
+    .indicator-list { list-style-type: square; padding-right: 25px; margin-top: 10px; }
+    .indicator-list li { margin-bottom: 8px; font-size: 0.85rem; color: var(--text-muted); }
+    .section-subtitle {
+        color: var(--accent);
+        border-right: 4px solid var(--accent);
+        padding-right: 15px;
+        margin: 25px 0 15px;
+        font-family: 'Amiri', serif;
+    }
+    .references-list {
+        background: var(--bg-section);
+        padding: 20px;
+        border-radius: var(--radius-md);
+        margin-bottom: 30px;
+    }
+    .references-list li { margin-bottom: 10px; font-size: 0.9rem; }
+  </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════ HERO -->
-<div class="hero">
-  <div class="hero-emblem">
-    <div class="emblem-line right"></div>
-    <div class="emblem-icon">⚖</div>
-    <div class="emblem-line"></div>
-  </div>
-  <h1>الجمهورية الجزائرية الديمقراطية الشعبية</h1>
-  <h2>وزارة التكوين والتعليم المهنيين</h2>
-  <div class="hero-badge">عقد النجاعة الخاص بالمدراء الولائيين</div>
-  <p class="hero-meta">نسخة مراجعة — فيفري 2026</p>
-</div>
-
-<!-- ═══════════════════════════════════════════════ NAV -->
-<div class="nav-bar">
-  <div class="nav-tab active" onclick="showSection('s1',this)">المنشور وبيانات العقد</div>
-  <div class="nav-tab" onclick="showSection('s2',this)">المقدمة والإطار</div>
-  <div class="nav-tab" onclick="showSection('s3',this)">البرامج والأهداف</div>
-  <div class="nav-tab" onclick="showSection('s4',this)">أهمية عقود النجاعة</div>
-  <div class="nav-tab" onclick="showSection('s5',this)">مجالات التقييم</div>
-  <div class="nav-tab" onclick="showSection('s6',this)">شبكة التقييم</div>
-  <div class="nav-tab" onclick="showSection('s7',this)">المراجع القانونية</div>
-</div>
-
-<div class="container">
-
-<!-- ═══════════════ S1: المنشور -->
-<div id="s1" class="section active">
-  <div class="section-header">
-    <div class="section-number">١</div>
-    <div class="section-title-text">
-      <h3>بيانات المنشور الوزاري</h3>
-      <p>المعلومات الأساسية للوثيقة والجهة المعنية</p>
-    </div>
-  </div>
-
-  <div class="info-card">
-    <p><strong>منشور وزاري رقم:</strong> .......... &nbsp;&nbsp; <strong>المؤرخ في:</strong> ..........................</p>
-    <p><strong>الموافق لـ:</strong> .............................</p>
-    <p><strong>موجه إلى:</strong> السيدات والسادة مدراء التكوين والتعليم المهنيين بالولايات</p>
-    <p><strong>المتضمن:</strong> عقد النجاعة الخاص بالمدراء الولائيين للتكوين والتعليم المهنيين وتقييمه</p>
-  </div>
-
-  <div class="intro-text">
-    <strong>التصنيف حسب البرامج والنشاطات — قانون المالية 2026:</strong><br/>
-    استناداً إلى المرسوم التنفيذي رقم 26-46 المؤرخ في 7 جانفي سنة 2026، المتضمن توزيع رخص الإلتزام واعتمادات الدفع المفتوحة بعنوان ميزانية الدولة بموجب قانون المالية لسنة 2026 الموضوعة تحت تصرف وزيرة التكوين والتعليم المهنيين.
-  </div>
-
-  <div class="info-card">
-    <p><strong>الهيكل التصنيفي للميزانية العامة:</strong></p>
-    <p>● محفظة البرنامج &nbsp;|&nbsp; ● البرنامج &nbsp;|&nbsp; ● البرنامج الفرعي &nbsp;|&nbsp; ● النشاط &nbsp;|&nbsp; ● النشاط الفرعي (عند الاقتضاء)</p>
-  </div>
-</div>
-
-<!-- ═══════════════ S2: المقدمة -->
-<div id="s2" class="section">
-  <div class="section-header">
-    <div class="section-number">٢</div>
-    <div class="section-title-text">
-      <h3>المقدمة والإطار المرجعي</h3>
-      <p>التحول من تسيير الوسائل إلى تسيير النتائج</p>
-    </div>
-  </div>
-
-  <div class="intro-text" style="font-family:'Amiri',serif; font-size:1.05rem;">
-    يعتبر تطوير إدارة عمومية تتسم بالنزاهة والفعالية، والارتقاء بأداء المرفق العام، من الأولويات الأساسية في إطار الإصلاحات الهيكلية للدولة. وقد بادرت عدة دول خلال السنوات الأخيرة إلى إطلاق برامج شاملة لتحديث إداراتها العمومية، تجسيداً لإرادة حقيقية تهدف إلى تعزيز نجاعة تسيير الشأن العام، وتحسين جودة الخدمات المقدمة للمرتفقين.
-  </div>
-
-  <div class="info-card">
-    <p><strong>جوهر التحول:</strong> الانتقال من مقاربة قانونية تقليدية قائمة على <em>منطق الموارد</em> إلى مقاربة اقتصادية حداثية ترتكز على <em>التسيير العمومي القائم على الأداء وتحقيق النتائج</em>.</p>
-    <p style="background:rgba(201,168,76,0.12); padding:10px 14px; border-radius:4px; border-right:3px solid var(--gold); margin-top:8px;">
-      <strong>من «كم استهلكنا؟» إلى «ماذا حققنا؟»</strong>
-    </p>
-  </div>
-
-  <div class="info-card">
-    <p><strong>تعريف عقود الأهداف والنجاعة:</strong></p>
-    <p>هي اتفاقيات إدارية تهدف إلى ضمان التنفيذ الفعال لتعليمات الوزارة على المستوى الولائي، وتتضمن أهدافاً محددة، ومؤشرات لقياس الأداء، وآليات للرقابة والتقييم بهدف تحقيق النتائج المرجوة.</p>
-    <p style="margin-top:10px;">تُبرم لمدة <strong>ثلاث (03) سنوات</strong> بين مسؤولي البرامج ومسؤولي النشاطات، في إطار مقاربة متعددة السنوات للميزانية العامة القائمة على التخطيط متوسط المدى.</p>
-  </div>
-
-  <div class="info-card">
-    <p><strong>المسؤولية الجوهرية للمدير الولائي:</strong> تنفيذ البرامج وفق التوجيهات العامة للوزارة وترجمة تلك الأهداف إلى خطط عمل ميدانية تراعي الخصوصيات الإقليمية للولاية مع الاستغلال العقلاني للموارد (المالية، المادية والبشرية) المخصصة للأنشطة لضمان أقصى درجات الكفاءة.</p>
-  </div>
-</div>
-
-<!-- ═══════════════ S3: البرامج -->
-<div id="s3" class="section">
-  <div class="section-header">
-    <div class="section-number">٣</div>
-    <div class="section-title-text">
-      <h3>البرامج الاستراتيجية والأهداف القطاعية</h3>
-      <p>محفظة برامج وزارة التكوين والتعليم المهنيين</p>
-    </div>
-  </div>
-
-  <div class="programs-grid">
-    <div class="program-card">
-      <div class="program-num">١</div>
-      <h4>ترقية التكوين والتعليم المهنيين</h4>
-      <p>تحسين قابلية توظيف المتكونين — تطوير التكوين وتعزيز المهارات التعليمية والمهنية</p>
-    </div>
-    <div class="program-card">
-      <div class="program-num">٢</div>
-      <h4>مرافقة المتكونين</h4>
-      <p>الظروف المعيشية للمتكونين — المرافقة المقاولاتية للمتكونين</p>
-    </div>
-    <div class="program-card">
-      <div class="program-num">٣</div>
-      <h4>الإدارة العامة والدعم</h4>
-      <p>تسيير الوزارة — الدعم الإداري وعصرنة التسيير</p>
-    </div>
-  </div>
-
-  <h4 style="font-size:1.1rem; color:var(--navy); margin-bottom:18px; font-family:'Amiri',serif; border-bottom:2px solid var(--silver); padding-bottom:10px;">الأهداف القطاعية ومؤشرات الأداء</h4>
-
-  <div class="obj-table-wrap">
-    <table class="obj-table">
-      <thead>
-        <tr>
-          <th>تعيين الهدف</th>
-          <th>وصف الهدف</th>
-          <th>مؤشرات الأداء الرئيسية</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>تحسين جودة التكوين المهني</td>
-          <td>رفع مستوى جودة البرامج التكوينية: تحسين المناهج، تحديث الوسائل التعليمية، استخدام تقنيات حديثة، وتدريب المدربين بصفة مستمرة.</td>
-          <td>نسبة المساهمة في التحيين السنوي للمرجع الوطني للتكوين والكفاءات وكذا لمدونات الشعب والتخصصات والمناهج البيداغوجية — معدل تسيير التجهيزات التقنية والبيداغوجية — تقييم مستوى رضا المتكونين والمتعاملين الاقتصاديين — عدد المشاركات والترتيب في المسابقات الوطنية والدولية.</td>
-        </tr>
-        <tr>
-          <td>رفع نسبة الإدماج المهني للمتكونين</td>
-          <td>ضمان تعزيز قابلية إدماج المتكوّنين في سوق الشغل بعد تخرجهم عبر تدعيم الشراكات مع المؤسسات الاقتصادية وتطوير آليات دعم المبادرات الريادية.</td>
-          <td>نسبة المتخرجين الموظفين — عدد اتفاقيات الشراكة المفعّلة — عدد المتخرجين المنشئين لمؤسسات مصغّرة — نسبة استغلال آليات التنسيق مع ANEM.</td>
-        </tr>
-        <tr>
-          <td>تعزيز التكوين في المجالات الاستراتيجية</td>
-          <td>المساهمة في التكامل بين العرض التكويني والمتطلبات الاقتصادية: الزراعة الحديثة، الطاقات المتجددة، الاقتصاد الرقمي.</td>
-          <td>عدد المؤسسات المستحدثة للتخصصات الاستراتيجية — نسبة الزيادة في عدد المسجلين — عدد التخصصات الجديدة المرتبطة بالمهن المستقبلية.</td>
-        </tr>
-        <tr>
-          <td>تعزيز التكوين في المناطق النائية</td>
-          <td>توسيع وتحديث الهياكل التكوينية في المناطق الريفية والنائية وتكثيف برامج التحسيس والتوعية.</td>
-          <td>عدد الهياكل المنشأة — نسبة الزيادة في المقاعد البيداغوجية — نسبة تقليص التسرب — توفير التكوين عبر الإنترنت E-learning ووحدات متنقلة.</td>
-        </tr>
-        <tr>
-          <td>تحقيق التوظيف الذاتي عبر التكوين</td>
-          <td>دعم الشباب وتمكينهم من إنشاء وتسيير مشاريعهم الخاصة عبر برامج ريادة الأعمال وترسيخ ثقافة الابتكار والمبادرة.</td>
-          <td>عدد البرامج المتخصصة في ريادة الأعمال — عدد المؤسسات المصغّرة المنشأة — تعزيز نوادي الإبداع والابتكار.</td>
-        </tr>
-        <tr>
-          <td>تحسين الشراكة مع القطاع الخاص</td>
-          <td>تعزيز التعاون مع المحيط الاقتصادي عبر اتفاقيات شراكة مع شركات محلية وأجنبية لتوفير فرص تكوين عملي تطبيقي.</td>
-          <td>عدد اتفاقيات الشراكة المبرمة — نسبة الاتفاقيات المفعّلة — نسبة المتكونين المستفيدين من التدريب العملي — مستوى رضا المؤسسات الشريكة.</td>
-        </tr>
-        <tr>
-          <td>مواكبة التحولات الرقمية</td>
-          <td>إدراج برامج التكنولوجيا الحديثة: البرمجة، الذكاء الاصطناعي، تكنولوجيا الإعلام والاتصال وفتح تخصصات جديدة.</td>
-          <td>عدد الدورات في التكنولوجيا الرقمية — عدد اتفاقيات التعاون مع مؤسسات متخصصة — توفير شبكة إنترنت عالية الجودة — تجهيزات حديثة.</td>
-        </tr>
-        <tr>
-          <td>المسؤولية الاجتماعية</td>
-          <td>الاستثمار في المورد البشري عبر تقديم تكوين يضمن تكافؤ الفرص للفئات الهشة والشباب وتقليص فجوات البطالة.</td>
-          <td>عدد البرامج للنساء الماكثات بالبيوت والمرأة الريفية — درجة التكفل بذوي الاحتياجات الخاصة — عدد الاتفاقيات مع جمعيات المجتمع المدني.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ═══════════════ S4: الأهمية -->
-<div id="s4" class="section">
-  <div class="section-header">
-    <div class="section-number">٤</div>
-    <div class="section-title-text">
-      <h3>أهمية عقود الأهداف والنجاعة</h3>
-      <p>الفوائد الاستراتيجية والتشغيلية لمنظومة عقود النجاعة</p>
-    </div>
-  </div>
-
-  <div class="importance-list">
-    <div class="imp-item">
-      <div class="imp-icon">✓</div>
-      <div>
-        <h5>تحقيق الفعالية</h5>
-        <p>ضمان التنفيذ الفعّال للسياسات العمومية من خلال تحديد التزامات واضحة ومساءلة المسؤولين المحليين.</p>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="ministry-logo">
+        <img src="ministry_emblem_gold_1778754936756.png" alt="شعار الوزارة">
       </div>
+      <h1>الجمهورية الجزائرية الديمقراطية الشعبية</h1>
+      <h2>وزارة التكوين والتعليم المهنيين</h2>
+      <div style="font-family: 'Amiri', serif; font-size: 1.8rem; margin: 15px 0; color: var(--accent-light);">الوزيـــــــــــــــــــــــــــــــرة</div>
+      <div class="hero-badge">عقد النجاعة الخاص بالمدراء الولائيين للتكوين والتعليم المهنيين وتقييمه</div>
+      <p style="margin-top: 20px; opacity: 0.8;">منشور وزاري رقم .......... المؤرخ .......................... الموافق لـ ...........................</p>
     </div>
-    <div class="imp-item">
-      <div class="imp-icon">📊</div>
-      <div>
-        <h5>مراقبة وتقييم الأداء</h5>
-        <p>توفير آليات صارمة لمراقبة الأداء على المستوى المحلي وضمان تطابق النتائج مع الأهداف القطاعية.</p>
+  </header>
+
+  <div class="app-container">
+    
+    <!-- Navigation -->
+    <nav class="sticky-nav">
+      <div class="nav-tabs">
+        <button class="tab-btn active" onclick="showSection('header-info')">البيانات والمراجع</button>
+        <button class="tab-btn" onclick="showSection('intro-full')">المقدمة والمفاهيم</button>
+        <button class="tab-btn" onclick="showSection('importance-full')">الأهمية والأهداف</button>
+        <button class="tab-btn" onclick="showSection('domains-full')">مجالات التقييم</button>
+        <button class="tab-btn" onclick="showSection('grille-full')">شبكة التقييم</button>
       </div>
-    </div>
-    <div class="imp-item">
-      <div class="imp-icon">🏆</div>
-      <div>
-        <h5>تحفيز وتحسين الأداء</h5>
-        <p>أنظمة تحفيزية للمسؤولين مرتبطة بتحقيق الأهداف المحددة مما يرفع مستوى الالتزام.</p>
-      </div>
-    </div>
-    <div class="imp-item">
-      <div class="imp-icon">⏱</div>
-      <div>
-        <h5>سرعة الأداء</h5>
-        <p>ضبط عنصر الوقت وإعطائه الأهمية اللازمة في القيام بالنشاط وتقديم الخدمات.</p>
-      </div>
-    </div>
-    <div class="imp-item">
-      <div class="imp-icon">⚖</div>
-      <div>
-        <h5>ربط المسؤولية بالمحاسبة</h5>
-        <p>المسار المهني للمدراء الولائيين مرتبط طردياً بمدى تحقيقهم للأهداف المسطّرة.</p>
-      </div>
-    </div>
-    <div class="imp-item">
-      <div class="imp-icon">💡</div>
-      <div>
-        <h5>رفع مستوى الأداء</h5>
-        <p>تحسين الإنتاجية، ترشيد النفقات، وتطوير جودة الخدمات والمخرجات.</p>
-      </div>
-    </div>
-    <div class="imp-item">
-      <div class="imp-icon">🤝</div>
-      <div>
-        <h5>تعزيز الحوكمة الرشيدة</h5>
-        <p>آلية لتفعيل الحوكمة والشفافية وتوجيه جهود المؤسسات نحو تحقيق أهداف مشتركة.</p>
-      </div>
-    </div>
-    <div class="imp-item">
-      <div class="imp-icon">💰</div>
-      <div>
-        <h5>ترشيد النفقات</h5>
-        <p>الاستخدام العقلاني للموارد المالية والبشرية والمادية وتوجيهها نحو الأولويات الاستراتيجية.</p>
-      </div>
-    </div>
-    <div class="imp-item">
-      <div class="imp-icon">🌟</div>
-      <div>
-        <h5>تحسين جودة الخدمات</h5>
-        <p>تطوير الخدمات العمومية المقدمة للمواطنين في التكوين والتعليم المهنيين وجعلها أكثر استجابة.</p>
-      </div>
-    </div>
-    <div class="imp-item">
-      <div class="imp-icon">🏅</div>
-      <div>
-        <h5>تكريس مبدأ التنافسية</h5>
-        <p>تحفيز المؤسسات العمومية على الارتقاء بمؤشرات أدائها والإشهار بها لدى الشركاء والمتعاملين.</p>
-      </div>
-    </div>
-  </div>
-</div>
+    </nav>
 
-<!-- ═══════════════ S5: مجالات التقييم -->
-<div id="s5" class="section">
-  <div class="section-header">
-    <div class="section-number">٥</div>
-    <div class="section-title-text">
-      <h3>مجالات تدخل وتقييم المديرين الولائيين</h3>
-      <p>المحاور الرئيسية لقياس أداء المديرين الولائيين</p>
-    </div>
-  </div>
-
-  <div class="domain-card">
-    <h4>برامج العمل <span class="tag">إدارة</span></h4>
-    <p class="domain-objectives"><strong>الأهداف:</strong> وجود برامج النشاطات للمؤسسات التكوينية — وجود خطة العمل لمدراء المؤسسات — صحة وموضوعية الأهداف المحددة.</p>
-    <div class="indicators-box">
-      عدد ونوعية النشاطات المبرمجة (إدارية، بيداغوجية، مسابقات، معارض، أيام دراسية، تظاهرات ثقافية ورياضية وعلمية) — نسبة المؤطرين والمتكونين المشاركين — مدى انتظام النشاطات على مدار السنة التكوينية — نسبة الأهداف المحققة في نهاية السداسي / السنة.
-    </div>
-  </div>
-
-  <div class="domain-card gold-accent">
-    <h4>التكوين المهني <span class="tag">بيداغوجي</span></h4>
-    <p class="domain-objectives"><strong>الأهداف:</strong> تحسين نوعية التكوين — تحسين نوعية التأطير البيداغوجي.</p>
-    <div class="indicators-box">
-      نسبة الشعب المهنية المحيّنة بالتشاور مع الشركاء — مدى توافق البرامج مع احتياجات سوق العمل — نسبة المكونين المستفيدين من دورات متخصصة — درجة دمج التقنيات الحديثة — نسبة المؤسسات المربوطة بالألياف البصرية — نسبة التكوين عن بُعد E-learning.
-    </div>
-  </div>
-
-  <div class="domain-card rust-accent">
-    <h4>التعليم المهني <span class="tag">بيداغوجي</span></h4>
-    <p class="domain-objectives"><strong>الأهداف:</strong> تحسين نوعية التأطير البيداغوجي — تحسين نوعية التعليم المهني.</p>
-    <div class="indicators-box">
-      نسبة الميادين والفروع المفتوحة بناءً على دراسات ميدانية — مدى توافق البرامج مع سوق العمل — عدد المراجعات على البرامج — نسبة المكونين المستفيدين من دورات تكوينية — نسبة التكوين عن بُعد — مدى حداثة التجهيزات.
-    </div>
-  </div>
-
-  <div class="domain-card navy-accent">
-    <h4>التكوين المتواصل والشراكة <span class="tag">شراكة</span></h4>
-    <p class="domain-objectives"><strong>الأهداف:</strong> تحسين نوعية الشراكة مع الشركاء الاقتصاديين — تحسين جودة التكوين المتواصل.</p>
-    <div class="indicators-box">
-      عدد الدورات التدريبية المنظمة — نسبة الموظفين المشاركين — نسبة التصديق على الكفاءات المكتسبة — رضا المتكونين حول جودة التكوين — عدد الشراكات المبرمة مع الهيئات والشركات — مدى فاعلية اللجان الولائية للشراكة.
-    </div>
-  </div>
-
-  <div class="domain-card">
-    <h4>التسيير الإداري والمنازعات <span class="tag">إداري</span></h4>
-    <p class="domain-objectives"><strong>الأهداف:</strong> تحسين أداء التسيير الإداري — تحسين نوعية التأطير الإداري.</p>
-    <div class="indicators-box">
-      عدد مخططات تسيير الموارد البشرية المنجزة والمصادق عليها — عدد ونسبة عمليات التوظيف — عدد موظفي المؤسسات المستفيدين من التكوين وتحسين المستوى — نسبة الاستجابة لتظلمات الموظفين — درجة رقمنة العمليات الإدارية.
-    </div>
-  </div>
-
-  <div class="domain-card gold-accent">
-    <h4>التسيير المالي <span class="tag">مالي</span></h4>
-    <p class="domain-objectives"><strong>الأهداف:</strong> إعداد وتنفيذ الاعتمادات المفتوحة — مراقبة الميزانية — العمليات خارج الميزانية.</p>
-    <div class="indicators-box">
-      نسبة إجمالي استهلاك الاعتمادات T1+T2 — نسبة استهلاك المنح وشبه الرواتب T4 — نسبة استهلاك نفقات الاستثمار T3 — نسبة استغلال الداخلية والإطعام — نسبة المبلغ المحصل من العمليات خارج الميزانية — نسبة التحويلات في المؤسسات والمديرية — درجة رقمنة العمليات.
-    </div>
-  </div>
-
-  <div class="domain-card rust-accent">
-    <h4>تسيير الممتلكات <span class="tag">ممتلكات</span></h4>
-    <p class="domain-objectives"><strong>الأهداف:</strong> تسيير الممتلكات غير المنقولة والمنقولة — عمليات الجرد والإسقاط — تطهير المخزون — تدعيم إجراءات الأمن الداخلي.</p>
-    <div class="indicators-box">
-      عدد المؤسسات المالكة لملف الملكية العقارية — حظيرة السيارات — عدد التجهيزات التقنو-بيداغوجية المجرودة والمستغلة — عدد مؤسسات الأمن الداخلي — نسبة تطهير حظيرة السكنات الوظيفية — تنظيم الأرشيف.
-    </div>
-  </div>
-
-  <div class="domain-card navy-accent">
-    <h4>متابعة المؤسسات التكوينية <span class="tag">متابعة</span></h4>
-    <p class="domain-objectives"><strong>الأهداف:</strong> تحسين نوعية متابعة المؤسسات العامة والخاصة — الإدماج المهني للمتخرجين — رقمنة القطاع.</p>
-    <div class="indicators-box">
-      نسبة تغطية مفتشي المقاطعة — نسبة تنفيذ التوصيات — نسبة المتخرجين الموظفين وفي مجال تخصصهم — عدد المؤسسات الخاصة المعتمدة — نسبة العمليات الإدارية المحوّلة رقمياً — نسبة رضا المتكونين عن التكوين الرقمي — قياس نسبة تحيين المعطيات المسجلة في المنصات الرقمية (تسيير، تكوين، تمهين وغيرها).
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════ S6: شبكة التقييم -->
-<div id="s6" class="section">
-  <div class="section-header">
-    <div class="section-number">٦</div>
-    <div class="section-title-text">
-      <h3>شبكة التقييم — Grille d'évaluation</h3>
-      <p>أداة محورية لقياس الأداء بمعايير كمية ونوعية دقيقة</p>
-    </div>
-  </div>
-
-  <div class="rating-legend">
-    <strong style="color:var(--navy); margin-left:10px;">سلّم التقدير:</strong>
-    <div class="legend-item"><div class="legend-dot" style="background:#1a6b7a;">١</div> جيد جداً</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#2980b9;">٢</div> جيد</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#c9a84c;">٣</div> حسن</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#e67e22;">٤</div> متوسط</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#c0392b;">٥</div> ضعيف</div>
-  </div>
-
-  <div class="grille-section">
-    <div class="grille-card">
-      <div class="grille-header">
-        <h5>أ) القدرة على الحوكمة والمهارات الإدارية</h5>
-        <div class="rating-stars">
-          <div class="star" onclick="rate(this)">١</div>
-          <div class="star" onclick="rate(this)">٢</div>
-          <div class="star" onclick="rate(this)">٣</div>
-          <div class="star" onclick="rate(this)">٤</div>
-          <div class="star" onclick="rate(this)">٥</div>
+    <main>
+      
+      <!-- Section: Header & References -->
+      <section id="header-info" class="section active">
+        <div class="card">
+          <div class="card-title"><i class="fas fa-info-circle"></i> <h3>بيانات التوجيه</h3></div>
+          <p><strong>إلى السيدات والسادة مدراء التكوين والتعليم المهنيين بالولايات</strong></p>
+          <div class="section-subtitle">المراجع القانونية</div>
+          <ul class="references-list">
+            <li>القانون العضوي رقم 18-15 المؤرخ في 02 سبتمبر سنة 2018، المتعلق بقوانين المالية، المعدل والمتمم.</li>
+            <li>الأمر رقم 06-03 المؤرخ في 15 يوليو سنة 2006 المتضمن القانون الأساسي العام للوظيفة العمومية، المتمم.</li>
+            <li>المرسوم التنفيذي رقم 14-98 المؤرخ في 4 مارس سنة 2014، الذي يحدد قواعد تنظيم مديريات التكوين والتعليم المهنيين في الولاية وسيرها.</li>
+            <li>المرسوم التنفيذي رقم 26-46 المؤرخ في 7 جانفي سنة 2026، المتضمن توزيع رخص الالتزام واعتمادات الدفع المفتوحة بعنوان ميزانية الدولة، بموجب قانون المالية لسنة 2026، الموضوعة تحت تصرف وزيرة التكوين والتعليم المهنيين.</li>
+            <li>القرار الوزاري المشترك المؤرخ في 11 يونيو سنة 2015، المتضمن تنظيم مديريات التكوين والتعليم المهنيين في الولاية، المعدل والمتمم.</li>
+            <li>القرار الوزاري المشترك المؤرخ في 31 ديسمبر سنة 2020، الذي يحدد تنظيم المديرية المنتدبة للتكوين والتعليم المهنيين في مصالح ومكاتب.</li>
+          </ul>
         </div>
-      </div>
-      <div class="grille-body">
-        رؤية المدير فيما يتعلق بنطاق مهامه — مدى وضوح خطة العمل السنوية للمدير ومدى مواءمتها مع استراتيجية القطاع.<br/>
-        <strong>الهدف:</strong> تقييم مدى وعي المدير بمهامه وقدرته على التكفل بها.
-      </div>
-    </div>
+      </section>
 
-    <div class="grille-card">
-      <div class="grille-header">
-        <h5>ب) التزام المدير ومعرفته بالمصالح التي يديرها</h5>
-        <div class="rating-stars">
-          <div class="star" onclick="rate(this)">١</div>
-          <div class="star" onclick="rate(this)">٢</div>
-          <div class="star" onclick="rate(this)">٣</div>
-          <div class="star" onclick="rate(this)">٤</div>
-          <div class="star" onclick="rate(this)">٥</div>
+      <!-- Section: Introduction -->
+      <section id="intro-full" class="section">
+        <div class="card full-text-content">
+          <div class="card-title"><i class="fas fa-book-open"></i> <h3>مقدمة</h3></div>
+          <p>يعتبر تطوير إدارة عمومية تتسم بالنزاهة والفعالية، والارتقاء بأداء المرفق العام، من الأولويات الأساسية في إطار الإصلاحات الهيكلية للدولة. وقد بادرت عدة دول خلال السنوات الأخيرة إلى إطلاق برامج شاملة لتحديث إداراتها العمومية، تجسيداً لإرادة حقيقية تهدف إلى تعزيز نجاعة تسيير الشأن العام، وتحسين جودة الخدمات المقدمة للمرتفقين، وضمان استجابة أفضل لانشغالات واحتياجات المواطنين.</p>
+          <p>وفي هذا السياق، سعى المشرّع الجزائري، من خلال تبنّيه للقانون العضوي رقم 18-15 المؤرخ في 02 سبتمبر 2018، المتعلق بقوانين المالية، إلى إحداث تحول نوعي في آليات إعداد واتخاذ القرار المالي العمومي، وذلك بالانتقال من مقاربة قانونية تقليدية قائمة على منطق الموارد، إلى مقاربة اقتصادية حداثية ترتكز على التسيير العمومي القائم على الأداء وتحقيق النتائج. أو بمنطق نقل التركيز من "كم استهلكنا؟" إلى "ماذا حققنا؟".</p>
+          <p>وقد تجسّد هذا التوجه عبر اعتماد الموازنة العامة كأداة للتسيير التي استوجبت إعادة هيكلة أعباء الدولة وفق تصنيفات حديثة من بينها التصنيف حسب البرامج والنشاطات، حيث يعد النشاط تقسيماً فرعياً وعملياً للبرنامج، طبقاً لما نصّت عليه أحكام المادة 28 من القانون العضوي رقم 18-15، ووفق التصنيف التالي:</p>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+            <span class="indicator-tag">محفظة البرنامج</span> <span class="indicator-tag">البرنامج</span> <span class="indicator-tag">البرنامج الفرعي</span> <span class="indicator-tag">النشاط</span> <span class="indicator-tag">النشاط الفرعي (عند الاقتضاء)</span>
+          </div>
+          <p>بالنسبة لقطاع التكوين والتعليم المهنيين، تم التصنيف حسب النشاطات وفق مقاربة القانون العضوي الجديد والمرسوم التنفيذي رقم 26-46 المؤرخ في 7 جانفي سنة 2026، المتضمن توزيع رخص الالتزام واعتمادات الدفع المفتوحة بعنوان ميزانية الدولة بموجب قانون المالية لسنة 2026 الموضوعة تحت تصرف وزيرة التكوين والتعليم المهنيين. وقد تم فعلياً تعيين مسؤولي البرامج الثلاث بالإضافة إلى مسؤول الوظيفة المالية.</p>
+          <p>ومن جهة أخرى، يجدر التذكير بأن التنزيل العملي للبرنامج يتمّ عبر اعتماد توزيع الميزانية حسب البرنامج (ميزانية البرنامج)، وذلك بالاستناد إلى أهداف محددة ومؤشرات أداء ملائمة لخصوصيات النشاط ولمهام المرفق العمومي بما يتيح ضمان المتابعة والتقييم المستمرين، وتصحيح الانحرافات المحتملة عند الاقتضاء، فضلاً عن توفير أرضية موضوعية وشفافة لتقييم المسؤولين عن البرنامج و/أو النشاط.</p>
+          <p>وانطلاقاً من هذه الرؤية الجديدة لتسيير المرفق العمومي، تمّ استحداث وثيقة تعاقدية تُسمّى «عقود الأهداف والنجاعة»، تبرم بين مسؤولي البرامج ومسؤولي النشاطات، حيث تتضمن تحديد أهداف ومؤشرات أداء سارية المفعول لمدة محددة مسبقاً بثلاث (03) سنوات، وذلك في إطار مقاربة متعددة السنوات للميزانية العامة، القائمة على التخطيط متوسط المدى.</p>
+          
+          <div class="section-subtitle">تعريف عقود الأهداف والنجاعة</div>
+          <p>هي عبارة عن اتفاقيات إدارية تهدف إلى ضمان التنفيذ الفعال لتعليمات الوزارة على المستوى الولائي، حيث تتضمن هذه العقود أهدافاً محددة، مؤشرات لقياس الأداء، وآليات للرقابة والتقييم بهدف تحقيق النتائج المرجوة.</p>
+          <p>تتمثل المسؤولية الجوهرية للمدير الولائي في تنفيذ البرامج وفق التوجيهات العامة للوزارة وترجمة تلك الأهداف إلى خطط عمل ميدانية تراعي الخصوصيات الإقليمية للولاية مع الاستغلال العقلاني للموارد (المالية، المادية والبشرية) المخصصة للأنشطة لضمان لأقصى درجات الكفاءة. وفي المقابل، يقوم مسؤول البرنامج على مستوى الإدارة المركزية بمتابعة وتقييم الأداء بصفة مستمرة وتصحيح الانحرافات المحتملة بصفة آنية وقوفاً منه على مدى تنفيذ البرامج بنجاح، مع الالتزام بموافاة الإدارة المركزية بتقارير دورية حول تقدم التنفيذ.</p>
         </div>
-      </div>
-      <div class="grille-body">
-        الحضور في المديرية — الانضباط والمواظبة — إلصاق النظام الداخلي — عدد الاجتماعات التي ترأسها — عدد الاستقبالات — معرفته للمديرية (ميزانية، تعداد، استثمارات، سكنات، شهادات) — وضوح الهيكل التنظيمي وتوزيع المسؤوليات — معرفته لنقاط القوة والضعف لدى مساعديه.
-      </div>
-    </div>
+      </section>
 
-    <div class="grille-card">
-      <div class="grille-header">
-        <h5>ج) المهارات القيادية والإدارية</h5>
-        <div class="rating-stars">
-          <div class="star" onclick="rate(this)">١</div>
-          <div class="star" onclick="rate(this)">٢</div>
-          <div class="star" onclick="rate(this)">٣</div>
-          <div class="star" onclick="rate(this)">٤</div>
-          <div class="star" onclick="rate(this)">٥</div>
-        </div>
-      </div>
-      <div class="grille-body">
-        قياس عمق النظرة الاستباقية للمدير — معدل الزيارات الميدانية والرقابية — روح المبادرة والاستقلالية في اتخاذ القرار — قدرة المدير على وضع حلول بديلة مبرمجة مسبقاً (خطة "ب") استباقاً لوقوع أزمات مفاجئة — روح الفريق والإدارة التشاركية — الشفافية والتواصل مع المرؤوسين.
-      </div>
-    </div>
+      <!-- Section: Importance & Objectives -->
+      <section id="importance-full" class="section">
+        <div class="card">
+          <div class="card-title"><i class="fas fa-star"></i> <h3>أهمية عقود الأهداف والنجاعة</h3></div>
+          <p>تعتبر عقود الأهداف والنجاعة حجر الزاوية في التحول من "تسيير الوسائل" إلى "تسيير النتائج"، وتتجلى أهميتها في النقاط التالية:</p>
+          <ul class="indicator-list" style="columns: 2; column-gap: 40px;">
+            <li><strong>تحقيق الفعالية:</strong> ضمان التنفيذ الفعّال للسياسات العمومية واستراتيجيات القطاع.</li>
+            <li><strong>مراقبة وتقييم الأداء:</strong> توفير آليات صارمة لمراقبة الأداء على المستوى المحلي.</li>
+            <li><strong>تحفيز وتحسين الأداء:</strong> ربط الحوافز بتحقيق الأهداف المحددة.</li>
+            <li><strong>سرعة الأداء:</strong> ضبط عنصر الوقت في القيام بالنشاط.</li>
+            <li><strong>تحقيق الأهداف والكفاءة:</strong> الانتقال من الإدارة التقليدية إلى الإدارة القائمة على النتائج.</li>
+            <li><strong>تعزيز مبدأ المساءلة:</strong> ربط المسار المهني للمدراء بالنتائج المحققة.</li>
+            <li><strong>رفع مستوى الأداء:</strong> تحسين الإنتاجية وترشيد النفقات.</li>
+            <li><strong>تحفيز المستخدمين:</strong> تعزيز رضا المستفيدين والموظفين.</li>
+            <li><strong>تعزيز الحوكمة الرشيدة:</strong> تفعيل الشفافية والفعالية.</li>
+            <li><strong>ترشيد النفقات:</strong> الاستخدام العقلاني للموارد المالية والبشرية والمادية.</li>
+            <li><strong>تحسين جودة الخدمات:</strong> تطوير الخدمات المقدمة للمواطنين.</li>
+            <li><strong>تكريس مبدأ التنافسية:</strong> تحفيز المؤسسات على الارتقاء بمؤشرات الأداء.</li>
+            <li><strong>تحفيز الموظفين الناشطين:</strong> الرفع من مستوى مردودية النشاطات.</li>
+            <li><strong>تنفيذ استراتيجيات القطاع:</strong> السهر على تنفيذها محلياً.</li>
+            <li><strong>تحقيق نتائج فعلية:</strong> لاسيما إدماج الخريجين وربط التكوين بسوق الشغل.</li>
+          </ul>
 
-    <div class="grille-card">
-      <div class="grille-header">
-        <h5>د) الحوكمة الجماعية والتقييم الذاتي</h5>
-        <div class="rating-stars">
-          <div class="star" onclick="rate(this)">١</div>
-          <div class="star" onclick="rate(this)">٢</div>
-          <div class="star" onclick="rate(this)">٣</div>
-          <div class="star" onclick="rate(this)">٤</div>
-          <div class="star" onclick="rate(this)">٥</div>
+          <div class="section-subtitle">الأهداف القطاعية ومؤشرات الأداء</div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>تعيين الهدف</th>
+                  <th>وصف الهدف</th>
+                  <th>مؤشرات الأداء</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>تحسين جودة التكوين المهني</td>
+                  <td>رفع مستوى جودة البرامج التكوينية (تحسين المناهج، تحديث الوسائل، استخدام تقنيات حديثة، تدريب المدربين).</td>
+                  <td>
+                    - نسبة المساهمة في التحيين السنوي للمرجع الوطني.<br>
+                    - معدل التسيير العام للتجهيزات.<br>
+                    - تقييم مستوى الرضا (متكونين/متعاملين).<br>
+                    - نسبة الأنشطة بالوسائط الرقمية.<br>
+                    - معدل تغطية مخطط تكوين المكونين.<br>
+                    - عدد والترتيب في المسابقات الوطنية والدولية.
+                  </td>
+                </tr>
+                <tr>
+                  <td>رفع نسبة الإدماج المهني</td>
+                  <td>ضمان تعزيز قابلية إدماج المتكوّنين في سوق الشغل عبر الشراكة مع المؤسسات ودعم الريادة.</td>
+                  <td>
+                    - نسبة المتخرجين المدمجين (أقل من سنة).<br>
+                    - نسبة الشعب المراجعة وفق احتياجات السوق.<br>
+                    - عدد اتفاقيات الشراكة المفعّلة.<br>
+                    - نسبة المتخرجين المدمجين عبر الشراكة.<br>
+                    - عدد ونسبة المنشئين لمشاريع ريادية.<br>
+                    - رضا المؤسسات حول كفاءة المتخرجين.<br>
+                    - نسبة التنسيق مع ANEM والوظيفة العمومية.<br>
+                    - تعميم تنظيم "هاكاتون" التكوين والتعليم المهنيين.
+                  </td>
+                </tr>
+                <tr>
+                  <td>التكوين في المجالات الاستراتيجية</td>
+                  <td>التكامل بين العرض التكويني والمتطلبات الراهنة (زراعة حديثة، طاقات متجددة، اقتصاد رقمي).</td>
+                  <td>
+                    - عدد المؤسسات المستحدثة/المرقاة للتخصصات الاستراتيجية.<br>
+                    - نسبة الزيادة السنوية في المسجلين.<br>
+                    - عدد الدراسات حول احتياجات سوق العمل.<br>
+                    - عدد التخصصات المرتبطة بالمهن المستقبلية.<br>
+                    - دعم ومرافقة مراكز الامتياز.
+                  </td>
+                </tr>
+                <tr>
+                  <td>التكوين في المناطق النائية</td>
+                  <td>تعزيز الولوج للتكوين في المناطق الريفية والنائية وتوسيع الهياكل.</td>
+                  <td>
+                    - عدد الهياكل المنشأة/الفروع سنوياً.<br>
+                    - نسبة الهياكل التي خضعت للتحديث.<br>
+                    - نسبة الزيادة في المقاعد البيداغوجية.<br>
+                    - تأثير حملات التحسيس على نسب التسجيل.<br>
+                    - توفير خدمات النقل بالتنسيق مع السلطات.<br>
+                    - نسبة تقليص التسرب.<br>
+                    - توفير التكوين المتنقل (E-learning/Tele-centre).
+                  </td>
+                </tr>
+                <tr>
+                  <td>تحقيق التوظيف الذاتي</td>
+                  <td>دعم الشباب لإنشاء وتسيير مشاريعهم الخاصة وترسيخ ثقافة الابتكار.</td>
+                  <td>
+                    - عدد البرامج المتخصصة في ريادة الأعمال.<br>
+                    - عدد الدورات المنجزة لفائدة الشباب.<br>
+                    - عدد المؤسسات المصغرة المنشأة من طرف الخريجين.<br>
+                    - نسبة حاملي المشاريع المستفيدين من المرافقة.<br>
+                    - تفعيل نوادي الإبداع والابتكار.
+                  </td>
+                </tr>
+                <tr>
+                  <td>تحسين الشراكة مع القطاع الخاص</td>
+                  <td>تعزيز التعاون مع المحيط الاقتصادي لتوفير فرص تكوين عملي تطبيقي.</td>
+                  <td>
+                    - عدد اتفاقيات الشراكة المبرمة (محلية/أجنبية).<br>
+                    - نسبة الاتفاقيات المفعّلة فعلياً.<br>
+                    - عدد الشركات المشاركة في التكوين.<br>
+                    - نسبة المتكونين المستفيدين من التدريب الميداني.<br>
+                    - رضا الشركات عن جودة التكوين العملي.
+                  </td>
+                </tr>
+                <tr>
+                  <td>مواكبة التحولات الرقمية</td>
+                  <td>تعزيز عروض التكوين في البرمجة، الذكاء الاصطناعي، وتكنولوجيا المعلومات.</td>
+                  <td>
+                    - عدد الدورات المنجزة في الرقمنة.<br>
+                    - عدد المتكونين على الأدوات الرقمية المتقدمة.<br>
+                    - اتفاقيات التعاون مع الشركات الرائدة (مثل هواوي).<br>
+                    - تحيين مستوى المكونين في الرقمنة.<br>
+                    - توفير شبكات عالية السرعة وتجهيزات حديثة.
+                  </td>
+                </tr>
+                <tr>
+                  <td>المسؤولية الاجتماعية</td>
+                  <td>تكافؤ الفرص للفئات الهشة، ترسخ قيم المواطنة، وتقليص فجوات البطالة.</td>
+                  <td>
+                    - مستوى المشاركة في حملات الوعي المجتمعي.<br>
+                    - درجة التكفل بذوي الاحتياجات الخاصة.<br>
+                    - البرامج المصممة للمرأة الماكثة بالبيت والريفية.<br>
+                    - الاتفاقيات مع جمعيات المجتمع المدني.<br>
+                    - التوعية والتحسيس بمخاطر الفساد.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-      <div class="grille-body">
-        مدى رضا المدير على القرارات المتخذة من طرف مرؤوسيه دون تدخل مباشر — انتظام وبرمجة اللقاءات مع مجالس التوجيه — القدرة على تحفيز التأطير الإداري والبيداغوجي — التحكم في اللوائح القانونية — تحسين الأداء وخفض التكاليف في المجالات: المالي، الموارد البشرية، الاستثمارات، العقارات والممتلكات.
-      </div>
-    </div>
+      </section>
 
-    <div class="grille-card">
-      <div class="grille-header">
-        <h5>و) التفاعل مع الملفات الجديدة والرقمنة</h5>
-        <div class="rating-stars">
-          <div class="star" onclick="rate(this)">١</div>
-          <div class="star" onclick="rate(this)">٢</div>
-          <div class="star" onclick="rate(this)">٣</div>
-          <div class="star" onclick="rate(this)">٤</div>
-          <div class="star" onclick="rate(this)">٥</div>
+      <!-- Section: Evaluation Domains -->
+      <section id="domains-full" class="section">
+        <div class="card">
+          <div class="card-title"><i class="fas fa-layer-group"></i> <h3>مجالات تدخل وتقييم المديرين الولائيين</h3></div>
+          <p>تشكل الأطر القانونية (المرسوم 14-98، 16-225، القرارات الوزارية 2015 و2020) الركيزة الأساسية لمهام المدير الولائي.</p>
+          
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>المجال</th>
+                  <th>الأهداف</th>
+                  <th>مؤشرات الأداء</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>برامج العمل</td>
+                  <td>- وجود برامج النشاطات للمؤسسات.<br>- وجود خطة العمل للمدراء.<br>- صحة وموضوعية الأهداف (SMART).</td>
+                  <td>
+                    - عدد ونوعية النشاطات (إدارية، بيداغوجية، مسابقات، معارض، صالونات، أيام دراسية، تظاهرات).<br>
+                    - نسبة المؤطرين والمتكونين المشاركين فعلياً.<br>
+                    - انتظام النشاطات (دورية أم مناسباتية).<br>
+                    - وجود محاضر تقييم جودة النشاطات.<br>
+                    - نسبة الأهداف المحققة فعلياً في نهاية السداسي.<br>
+                    - مواءمة الوسائل مع متطلبات خطة العمل.
+                  </td>
+                </tr>
+                <tr>
+                  <td>التكوين المهني</td>
+                  <td>- تحسين نوعية التكوين.<br>- تحسين نوعية التأطير البيداغوجي.</td>
+                  <td>
+                    - نسبة الشعب المراجعة بالتشاور مع الشركاء.<br>
+                    - توافق البرامج مع سوق العمل.<br>
+                    - تنوع الأساليب البيداغوجية.<br>
+                    - نسبة المكونين المستفيدين من دورات التحيين.<br>
+                    - نتائج الزيارات البيداغوجية للمفتشين.<br>
+                    - دمج التقنيات الحديثة (E-learning).<br>
+                    - نسبة المؤسسات المربوطة بالألياف البصرية.
+                  </td>
+                </tr>
+                <tr>
+                  <td>التعليم المهني</td>
+                  <td>- تحسين نوعية التأطير.<br>- تحسين نوعية التعليم المهني.</td>
+                  <td>
+                    - نسبة الميادين المفتوحة بناءً على دراسات ميدانية.<br>
+                    - توافق البرامج مع سوق العمل.<br>
+                    - نسبة المكونين المستفيدين من التكوين التقني والبيداغوجي.<br>
+                    - نسبة تنفيذ برنامج التفتيش السنوي.<br>
+                    - حداثة التجهيزات البيداغوجية.
+                  </td>
+                </tr>
+                <tr>
+                  <td>التكوين المتواصل والشراكة</td>
+                  <td>- تحسين نوعية الشراكة.<br>- تحسين نوعية التكوين المتواصل.</td>
+                  <td>
+                    - عدد الدورات التدريبية المنظمة للموظفين.<br>
+                    - نسبة تنفيذ مخططات التكوين المعتمدة.<br>
+                    - نسبة التصديق على الكفاءات المكتسبة (VAE).<br>
+                    - رضا المتكونين وأرباب العمل حول جودة المهارات.<br>
+                    - عدد الشراكات المبرمة لتحسين أداء الوحدات.<br>
+                    - فاعلية اللجان الولائية للشراكة.
+                  </td>
+                </tr>
+                <tr>
+                  <td>التسيير الإداري والمنازعات</td>
+                  <td>- تحسين أداء التسيير الإداري.<br>- تحسين نوعية التأطير الإداري.</td>
+                  <td>
+                    - عدد مخططات تسيير الموارد البشرية المصادق عليها.<br>
+                    - نسبة إنجاز عمليات التوظيف حسب المناصب المالية.<br>
+                    - عدد الموظفين المستفيدين من التكوين (هدف 30%).<br>
+                    - معالجة تظلمات الموظفين (سجل الشكاوى).<br>
+                    - عدد الوضعيات الإدارية (تحت التصرف).
+                  </td>
+                </tr>
+                <tr>
+                  <td>التسيير المالي</td>
+                  <td>- إعداد وتنفيذ الاعتمادات.<br>- مراقبة الميزانية (الحساب الإداري).<br>- العمليات خارج الميزانية.</td>
+                  <td>
+                    1/ شغور مناصب المدراء وصلاحية الآمر بالصرف.<br>
+                    2/ المصادقة على الميزانية في الآجال القانونية.<br>
+                    3/ نسبة استهلاك الاعتمادات T1+T2.<br>
+                    4/ استهلاك المنح وشبه الرواتب T4.<br>
+                    5/ استهلاك نفقات الاستثمار T3.<br>
+                    6/ نفقات الإعاشة (نسبة استغلال الداخلية والمطعم).<br>
+                    7/ تغطية النفقات الإلزامية وعدم وجود عجز.<br>
+                    8/ تحصيل الإيرادات الخاصة (إطعام، امتحانات، توثيق).<br>
+                    9/ العمليات خارج الميزانية (التكوين الإنتاجي وتوزيع الإيرادات).<br>
+                    10/ رقمنة العمليات المالية (منصة التسيير).<br>
+                    11/ حركات الاعتمادات المالية (بين المواد والأبواب).
+                  </td>
+                </tr>
+                <tr>
+                  <td>تسيير الممتلكات</td>
+                  <td>- تسيير الممتلكات العقارية والمنقولة.<br>- الجرد والإسقاط.<br>- تطهير المخزون والأمن الداخلي.</td>
+                  <td>
+                    - ملكية العقارات (الملف العقاري، شهادة التسجيل).<br>
+                    - تهيئة وترميم المؤسسات ونصب كاميرات المراقبة.<br>
+                    - تطهير حظيرة السكنات الوظيفية والنزاعات القضائية.<br>
+                    - جرد التجهيزات التقنو-بيداغوجية وحظيرة السيارات.<br>
+                    - عمليات الجرد الدوري السنوي والإسقاط من الخدمة.<br>
+                    - تسوية المواد العديمة الحركة في المخازن.<br>
+                    - تنفيذ مخططات الأمن الداخلي وتنظيم النجدة.<br>
+                    - تنظيم ورقمنة الأرشيف.
+                  </td>
+                </tr>
+                <tr>
+                  <td>متابعة المؤسسات (عامة/خاصة)</td>
+                  <td>- جودة المتابعة.<br>- الإدماج المهني والرقمنة.</td>
+                  <td>
+                    - نسبة تغطية مفتشي المقاطعة وتنفيذ التوصيات.<br>
+                    - معدل التقدم في البرامج والتخصصات المفتوحة.<br>
+                    - متابعة المؤسسات الخاصة (الاعتماد، المقرات، الشهادات).<br>
+                    - رضا المتكونين في القطاع الخاص والامتحانات الدورية.<br>
+                    - إدماج المتخرجين في سوق العمل (التطابق، الفترة الزمنية).<br>
+                    - الرقمنة: استخدام المنصات، معالجة المراسلات رقمياً.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-      <div class="grille-body">
-        تحديث أنظمة التكوين والتسيير — تطبيق أساليب التسيير الحديثة GAR — نسبة الخدمات والوثائق المتاحة رقمياً — مدى استخدام البرمجيات والأدوات الرقمية في متابعة البرامج — <strong>نسبة تحيين المعطيات المسجلة في المنصات الرقمية (تسيير، تكوين، تمهين وغيرها)</strong> — صحة ودقة تحيين المعطيات — متوسط الزمن المستغرق في إنجاز الإجراءات الإدارية والبيداغوجية.
-      </div>
-    </div>
+      </section>
 
-    <div class="grille-card">
-      <div class="grille-header">
-        <h5>ي) الاستماع، التواصل وإدارة النزاعات</h5>
-        <div class="rating-stars">
-          <div class="star" onclick="rate(this)">١</div>
-          <div class="star" onclick="rate(this)">٢</div>
-          <div class="star" onclick="rate(this)">٣</div>
-          <div class="star" onclick="rate(this)">٤</div>
-          <div class="star" onclick="rate(this)">٥</div>
-        </div>
-      </div>
-      <div class="grille-body">
-        <strong>التواصل الداخلي:</strong> وضع قنوات الإنصات والإعلام — اللقاءات الدورية مع المتكونين والموظفين — دورية اللقاءات مع الشركاء الاجتماعيين — متابعة التمثيليات النقابية.<br/>
-        <strong>التواصل الخارجي:</strong> المشاركة في اللقاءات مع الإعلام والنقاشات العمومية.<br/>
-        <strong>إدارة النزاعات:</strong> درجة الاستجابة للشكاوى — نسبة النزاعات المحلولة ودياً — نسبة النزاعات القضائية.
-      </div>
-    </div>
+      <!-- Section: Evaluation Grille -->
+      <section id="grille-full" class="section">
+        <div class="card">
+          <div class="card-title"><i class="fas fa-clipboard-check"></i> <h3>شبكة التقييم (Grille d’évaluation)</h3></div>
+          <p>تستند هذه الشبكة على معايير كمية ونوعية دقيقة. دلالات الملاحظات: 1- جيد جداً، 2- جيد، 3- حسن، 4- متوسط، 5- ضعيف.</p>
+          
+          <div id="full-eval-grille">
+            <!-- Criterion A -->
+            <div class="eval-item">
+              <div class="eval-header">
+                <span>أ) القدرة على الحوكمة والمهارات الإدارية</span>
+                <div class="rating-group" data-id="A">
+                  <button class="rating-btn" onclick="rate(this, 1)">1</button>
+                  <button class="rating-btn" onclick="rate(this, 2)">2</button>
+                  <button class="rating-btn" onclick="rate(this, 3)">3</button>
+                  <button class="rating-btn" onclick="rate(this, 4)">4</button>
+                  <button class="rating-btn" onclick="rate(this, 5)">5</button>
+                </div>
+              </div>
+              <div class="eval-body">
+                رؤية المدير فيما يتعلق بنطاق مهامه. مدى وضوح خطة العمل السنوية للمدير ومدى مواءمتها مع استراتيجية القطاع. الهدف: تقييم مدى وعي المدير بمهامه وقدرته على التكفل بها.
+              </div>
+            </div>
 
-    <div class="grille-card">
-      <div class="grille-header">
-        <h5>متابعة المؤسسات التكوينية والإدماج المهني</h5>
-        <div class="rating-stars">
-          <div class="star" onclick="rate(this)">١</div>
-          <div class="star" onclick="rate(this)">٢</div>
-          <div class="star" onclick="rate(this)">٣</div>
-          <div class="star" onclick="rate(this)">٤</div>
-          <div class="star" onclick="rate(this)">٥</div>
+            <!-- Criterion B -->
+            <div class="eval-item">
+              <div class="eval-header">
+                <span>ب) التزام المدير ومعرفته بالمصالح التي يديرها</span>
+                <div class="rating-group" data-id="B">
+                  <button class="rating-btn" onclick="rate(this, 1)">1</button>
+                  <button class="rating-btn" onclick="rate(this, 2)">2</button>
+                  <button class="rating-btn" onclick="rate(this, 3)">3</button>
+                  <button class="rating-btn" onclick="rate(this, 4)">4</button>
+                  <button class="rating-btn" onclick="rate(this, 5)">5</button>
+                </div>
+              </div>
+              <div class="eval-body">
+                - الحضور في المديرية (عدد الزيارات الفجائية داخل المصالح).<br>
+                - الانضباط والمواظبة (ورقة الحضور يومياً) وإلصاق النظام الداخلي.<br>
+                - عدد الاجتماعات التي ترأسها مقابل التي فوضها.<br>
+                - عدد الاستقبالات للموظفين والمواطنين (سجل الاستقبالات).<br>
+                - معرفته الدقيقة للمديرية (ميزانية، تعداد، استثمارات، سكنات، شهادات، نصوص).<br>
+                - وضوح الهيكل التنظيمي وتوزيع المسؤوليات بتوازن.<br>
+                - معرفته لقدرات ونقاط القوة والضعف والتهديدات (SWOT) لمساعديه.
+              </div>
+            </div>
+
+            <!-- Criterion C -->
+            <div class="eval-item">
+              <div class="eval-header">
+                <span>ج) المهارات القيادية والإدارية</span>
+                <div class="rating-group" data-id="C">
+                  <button class="rating-btn" onclick="rate(this, 1)">1</button>
+                  <button class="rating-btn" onclick="rate(this, 2)">2</button>
+                  <button class="rating-btn" onclick="rate(this, 3)">3</button>
+                  <button class="rating-btn" onclick="rate(this, 4)">4</button>
+                  <button class="rating-btn" onclick="rate(this, 5)">5</button>
+                </div>
+              </div>
+              <div class="eval-body">
+                - قياس عمق النظرة الاستباقية والمخطط التوقعي لإدارة القطاع.<br>
+                - معدل الزيارات الميدانية والرقابية للمصالح والمؤسسات.<br>
+                - روح المبادرة واستقلالية اتخاذ القرار.<br>
+                - قدرة المدير على وضع حلول بديلة مبرمجة مسبقاً (خطة "ب") استباقاً للأزمات.
+              </div>
+            </div>
+
+            <!-- Criterion D -->
+            <div class="eval-item">
+              <div class="eval-header">
+                <span>د) روح الفريق والإدارة التشاركية</span>
+                <div class="rating-group" data-id="D">
+                  <button class="rating-btn" onclick="rate(this, 1)">1</button>
+                  <button class="rating-btn" onclick="rate(this, 2)">2</button>
+                  <button class="rating-btn" onclick="rate(this, 3)">3</button>
+                  <button class="rating-btn" onclick="rate(this, 4)">4</button>
+                  <button class="rating-btn" onclick="rate(this, 5)">5</button>
+                </div>
+              </div>
+              <div class="eval-body">
+                - طريقة التعامل مع المرؤوسين (بالتعليمات أم بالأوامر؟).<br>
+                - وضوح توزيع المهام لتعزيز التعاون حسب كفاءات المستخدمين.<br>
+                - القدرة على إزالة عوائق التواصل والشفافية وتحفيز الفريق.
+              </div>
+            </div>
+
+            <!-- Governance -->
+            <div class="eval-item">
+              <div class="eval-header">
+                <span>الحوكمة الجماعية وتحسين الأداء</span>
+                <div class="rating-group" data-id="GOV">
+                  <button class="rating-btn" onclick="rate(this, 1)">1</button>
+                  <button class="rating-btn" onclick="rate(this, 2)">2</button>
+                  <button class="rating-btn" onclick="rate(this, 3)">3</button>
+                  <button class="rating-btn" onclick="rate(this, 4)">4</button>
+                  <button class="rating-btn" onclick="rate(this, 5)">5</button>
+                </div>
+              </div>
+              <div class="eval-body">
+                - مدى رضا المدير عن القرارات المتخذة من طرف مرؤوسيه دون تدخل مباشر.<br>
+                - انتظام اللقاءات مع مجالس التوجيه والتحكم في اللوائح القانونية.<br>
+                - خفض التكاليف في المجالات: مالي، موارد بشرية، استثمارات، وعقارات.
+              </div>
+            </div>
+
+            <!-- Self-eval -->
+            <div class="eval-item">
+              <div class="eval-header">
+                <span>هـ) التقييم الذاتي وضمان جودة التسيير</span>
+                <div class="rating-group" data-id="SELF">
+                  <button class="rating-btn" onclick="rate(this, 1)">1</button>
+                  <button class="rating-btn" onclick="rate(this, 2)">2</button>
+                  <button class="rating-btn" onclick="rate(this, 3)">3</button>
+                  <button class="rating-btn" onclick="rate(this, 4)">4</button>
+                  <button class="rating-btn" onclick="rate(this, 5)">5</button>
+                </div>
+              </div>
+              <div class="eval-body">
+                إعداد برامج/تطبيقات لتحسين كفاءة التسيير، واعتماد أدوات رسمية لتقييم الأداء وتحديد المسؤوليات.
+              </div>
+            </div>
+
+            <!-- Digital -->
+            <div class="eval-item">
+              <div class="eval-header">
+                <span>و) التفاعل مع الملفات الجديدة والرقمنة</span>
+                <div class="rating-group" data-id="W">
+                  <button class="rating-btn" onclick="rate(this, 1)">1</button>
+                  <button class="rating-btn" onclick="rate(this, 2)">2</button>
+                  <button class="rating-btn" onclick="rate(this, 3)">3</button>
+                  <button class="rating-btn" onclick="rate(this, 4)">4</button>
+                  <button class="rating-btn" onclick="rate(this, 5)">5</button>
+                </div>
+              </div>
+              <div class="eval-body">
+                - تطبيق أساليب التسيير الحديثة (GAR).<br>
+                - نسبة الخدمات الرقمية وتفعيل المنصات (تسيير، تكوين، تمهين).<br>
+                - صحة ودقة تحيين المعطيات المقدمة للوزيرة.<br>
+                - تسهيل الإجراءات: متوسط الزمن المستغرق ورضا المستفيدين.
+              </div>
+            </div>
+
+            <!-- Communication -->
+            <div class="eval-item">
+              <div class="eval-header">
+                <span>ي) الاستماع، التواصل وإدارة النزاعات</span>
+                <div class="rating-group" data-id="Y">
+                  <button class="rating-btn" onclick="rate(this, 1)">1</button>
+                  <button class="rating-btn" onclick="rate(this, 2)">2</button>
+                  <button class="rating-btn" onclick="rate(this, 3)">3</button>
+                  <button class="rating-btn" onclick="rate(this, 4)">4</button>
+                  <button class="rating-btn" onclick="rate(this, 5)">5</button>
+                </div>
+              </div>
+              <div class="eval-body">
+                - قنوات الإنصات مع المتكونين والموظفين واللقاءات مع الشركاء الاجتماعيين.<br>
+                - متابعة التمثيليات النقابية والشرعية النقابية.<br>
+                - إدارة النزاعات: التعامل مع الشكاوى، التحقيق الإداري، والحل الودي قبل المحاكم.
+              </div>
+            </div>
+
+            <!-- Monitoring -->
+            <div class="eval-item">
+              <div class="eval-header">
+                <span>متابعة المؤسسات والإدماج المهني</span>
+                <div class="rating-group" data-id="MON">
+                  <button class="rating-btn" onclick="rate(this, 1)">1</button>
+                  <button class="rating-btn" onclick="rate(this, 2)">2</button>
+                  <button class="rating-btn" onclick="rate(this, 3)">3</button>
+                  <button class="rating-btn" onclick="rate(this, 4)">4</button>
+                  <button class="rating-btn" onclick="rate(this, 5)">5</button>
+                </div>
+              </div>
+              <div class="eval-body">
+                - الخريطة البيداغوجية، مراجعة الشعب، والمرافقة الإدارية للمؤسسات الخاصة.<br>
+                - الإدماج: نسبة المتخرجين في مشاريع استثمارية (وكالة ترقية الاستثمار) والمرافقة بعد التخرج.
+              </div>
+            </div>
+
+            <!-- Final Rankings -->
+            <div class="eval-item">
+              <div class="eval-header">
+                <span>معدل التقييم والترتيب</span>
+                <div class="rating-group" data-id="RANK">
+                  <button class="rating-btn" onclick="rate(this, 1)">1</button>
+                  <button class="rating-btn" onclick="rate(this, 2)">2</button>
+                  <button class="rating-btn" onclick="rate(this, 3)">3</button>
+                  <button class="rating-btn" onclick="rate(this, 4)">4</button>
+                  <button class="rating-btn" onclick="rate(this, 5)">5</button>
+                </div>
+              </div>
+              <div class="eval-body">
+                معامل تقييم الترتيب في المسابقات الوطنية (بقرار الوزيرة) وتقييم السيد الوالي.
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 40px; border-top: 2px solid var(--bg-section); padding-top: 20px;">
+            <p><strong>تقديرات الجهة المقيمة:</strong></p>
+            <textarea placeholder="أدخل الملاحظات هنا..." rows="6" style="width:100%; border:1px solid var(--bg-section); padding:15px; border-radius:10px; font-family:'Cairo'; margin-top:10px;"></textarea>
+            <div style="text-align: left; margin-top: 20px;">
+                <button class="hero-badge" style="border:none; cursor:pointer;" onclick="calculateScore()">اعتماد التقييم النهائي</button>
+                <div id="result-display" style="margin-top: 20px;"></div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="grille-body">
-        تسيير الخريطة البيداغوجية ومراجعة الشعب المهنية — التنشيط والمرافقة البيداغوجية والإدارية — وضع حيز التنفيذ للأنظمة الرقمية المستحدثة من الوزارة — المرافقة الإدارية للمؤسسات التكوينية الخاصة المعتمدة — وضع الاتفاقيات مع الشركاء الاقتصاديين حيز التنفيذ.<br/>
-        <strong>الإدماج المهني:</strong> نسبة المتخرجين المدمجين في مشاريع استثمارية — نسبة المستفيدين من المرافقة ما بعد التخرج.
-      </div>
-    </div>
+      </section>
+
+    </main>
+
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid var(--bg-section);">
+      <p>صُمّم هذا النظام لوزارة التكوين والتعليم المهنيين &copy; 2026</p>
+      <p style="font-size: 0.8rem; opacity: 0.6;">الجمهورية الجزائرية الديمقراطية الشعبية</p>
+    </footer>
   </div>
 
-  <!-- ملاحظات الجهة المقيِّمة -->
-  <div class="info-card" style="margin-top:24px;">
-    <p><strong>تقديرات الجهة المقيِّمة:</strong></p>
-    <textarea placeholder="......................................................................................................................&#10;......................................................................................................................&#10;......................................................................................................................" rows="6" style="width:100%; border:1px solid var(--silver); border-radius:4px; padding:12px; font-family:'Cairo',sans-serif; font-size:0.9rem; direction:rtl; resize:vertical; background:var(--cream); color:var(--text); margin-top:10px;"></textarea>
-    <p style="margin-top:12px; font-size:0.85rem; color:var(--muted);">
-      <strong>ملاحظة:</strong> يتضمن التقييم النهائي معامل الترتيب في المسابقات الوطنية وتقييم السيد الوالي.
-    </p>
-  </div>
-</div>
-
-<!-- ═══════════════ S7: المراجع -->
-<div id="s7" class="section">
-  <div class="section-header">
-    <div class="section-number">٧</div>
-    <div class="section-title-text">
-      <h3>المراجع القانونية والتنظيمية</h3>
-      <p>النصوص التشريعية المؤطِّرة لعقد النجاعة</p>
-    </div>
-  </div>
-
-  <ul class="legal-list">
-    <li>
-      <span class="legal-num">قانون</span>
-      <span>القانون العضوي رقم <strong>18-15</strong> المؤرخ في 02 سبتمبر 2018، المتعلق بقوانين المالية، المعدل والمتمم — يُرسّخ الانتقال من منطق الوسائل إلى منطق النتائج والأداء.</span>
-    </li>
-    <li>
-      <span class="legal-num">أمر</span>
-      <span>الأمر رقم <strong>06-03</strong> المؤرخ في 15 يوليو 2006، المتضمن القانون الأساسي العام للوظيفة العمومية، المتمم.</span>
-    </li>
-    <li>
-      <span class="legal-num">مرسوم</span>
-      <span>المرسوم التنفيذي رقم <strong>14-98</strong> المؤرخ في 4 مارس 2014، الذي يحدد قواعد تنظيم مديريات التكوين والتعليم المهنيين في الولاية وسيرها.</span>
-    </li>
-    <li>
-      <span class="legal-num">مرسوم</span>
-      <span>المرسوم التنفيذي رقم <strong>16-225</strong> المؤرخ في 22 غشت 2016، الذي يحدد قائمة المناصب العليا التابعة للمصالح الخارجية لوزارة التكوين والتعليم المهنيين وشروط الالتحاق بها.</span>
-    </li>
-    <li>
-      <span class="legal-num">مرسوم</span>
-      <span>المرسوم التنفيذي رقم <strong>26-46</strong> المؤرخ في 7 جانفي 2026، المتضمن توزيع رخص الإلتزام واعتمادات الدفع المفتوحة بعنوان ميزانية الدولة بموجب قانون المالية لسنة 2026.</span>
-    </li>
-    <li>
-      <span class="legal-num">قرار</span>
-      <span>القرار الوزاري المشترك المؤرخ في <strong>11 يونيو 2015</strong>، المتضمن تنظيم مديريات التكوين والتعليم المهنيين في الولاية، المعدل والمتمم.</span>
-    </li>
-    <li>
-      <span class="legal-num">قرار</span>
-      <span>القرار الوزاري المشترك المؤرخ في <strong>31 ديسمبر 2020</strong>، الذي يحدد تنظيم المديرية المنتدبة للتكوين والتعليم المهنيين في مصالح ومكاتب.</span>
-    </li>
-    <li>
-      <span class="legal-num">قوانين</span>
-      <span>القوانين الأساسية للمؤسسات التكوينية: معهد وطني، معهد تعليم مهني، مركز، مركز متخصص، مؤسسة خاصة.</span>
-    </li>
-    <li>
-      <span class="legal-num">إجراءات</span>
-      <span>الإجراءات القطاعية المقررة في إطار الاستراتيجية الوطنية لتعزيز الشفافية والوقاية من الفساد ومكافحته.</span>
-    </li>
-    <li>
-      <span class="legal-num">نصوص</span>
-      <span>كافة النصوص القانونية والتنظيمية المتعلقة بمجالات: التكوين والتعليم المهنيين، الشراكة، الشهادات، السكنات، التسيير الإداري والمالي والبيداغوجي.</span>
-    </li>
-  </ul>
-</div>
-
-</div><!-- /container -->
-
-<div class="page-footer">
-  وثيقة مُعدّة وفق <span>مشروع عقد النجاعة — نسخة مراجعة فيفري 2026</span> &nbsp;|&nbsp; وزارة التكوين والتعليم المهنيين
-</div>
-
-<script>
-function showSection(id, tab) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  tab.classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function rate(el) {
-  const stars = el.parentElement.querySelectorAll('.star');
-  const val = Array.from(stars).indexOf(el) + 1;
-  stars.forEach((s, i) => {
-    s.classList.toggle('selected', i < val);
-  });
-}
-</script>
+  <script src="index.js"></script>
 </body>
 </html>
